@@ -22,7 +22,7 @@ export default function ProductReviews({ productId }) {
     }
   }, [productId]);
 
-    const averageRating =
+  const averageRating =
     reviews.length > 0
       ? reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length
       : 0;
@@ -42,11 +42,9 @@ export default function ProductReviews({ productId }) {
           </div>
         ))
       )}
-         <AverageRating averageRating={averageRating} reviews={reviews} />
+      <AverageRating averageRating={averageRating} reviews={reviews} />
 
-            
-
-      <Rating reviews={reviews} setReviews={setReviews} />
+      <Rating reviews={reviews} setReviews={setReviews} productId={productId} />
       <Reviews reviews={reviews} productId={productId} />
     </div>
   );

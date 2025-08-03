@@ -4,9 +4,10 @@ import { connectToDatabase } from "@/lib/mongodb";
 
 export async function GET(request, context) {
   await connectToDatabase();
-  const { params } = context;
-  const productId = params.id;
-console.log(params.id);
+  const { params } = await context;
+
+  const productId = params?.id;
+
   try {
     const product = await Product.findById(productId);
     if (!product) {

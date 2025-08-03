@@ -1,25 +1,22 @@
 import React, { useState } from "react";
 import Comment from "./comment";
 
-const Rating = ({ reviews, setReviews }) => {
+const Rating = ({ reviews, setReviews, productId }) => {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!rating || !comment) return;
-
+  const handleSubmit = async () => {
     const res = await fetch("/api/reviews", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ rating, comment }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        productId, // should be defined and non-empty
+        rating, // should be a number like 4 or 5
+        comment, // optional, but good to include
+      }),
     });
-
-    const newReview = await res.json();
-    
-    setReviews([newReview, ...reviews]);
-    setRating(0);
-    setComment("");
   };
 
   return (
@@ -41,6 +38,7 @@ const Rating = ({ reviews, setReviews }) => {
           ))}
         </div>
       </div>
+
       <Comment comment={comment} setComment={setComment} />
       <button
         type="submit"
