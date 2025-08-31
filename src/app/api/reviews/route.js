@@ -4,14 +4,14 @@ import Product from "@/models/Product";
 import { connectToDatabase } from "@/lib/mongodb";
 
 export async function POST(req) {
-  const { productId, rating, comment } = await req.json();
+  const { productId, rating, type, comment } = await req.json();
 
-  if (!productId || !rating) {
+  if (!productId || !rating || !type) {
     return Response.json({ message: "Missing fields" }, { status: 400 });
   }
 
   await connectToDatabase();
-  const review = await Review.create({ rating, comment, product: productId });
+  const review = await Review.create({ rating, comment, type, product: productId });
   console.log(review);
   return new Response(JSON.stringify(review), { status: 201 });
 }

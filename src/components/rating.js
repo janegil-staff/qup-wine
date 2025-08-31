@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import Comment from "./comment";
+import WineDropdown from "./WindeDropdown";
 
-const Rating = ({ reviews, setReviews, productId }) => {
+const Rating = ({ productId }) => {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
+  const [selected, setSelected] = useState("Vin");
 
   const handleSubmit = async () => {
     const res = await fetch("/api/reviews", {
@@ -14,13 +16,17 @@ const Rating = ({ reviews, setReviews, productId }) => {
       body: JSON.stringify({
         productId, // should be defined and non-empty
         rating, // should be a number like 4 or 5
-        comment, // optional, but good to include
+        comment,
+        type: selected, // optional, but good to include
       }),
     });
   };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+      <p>Velg vin type</p>
+      <WineDropdown setSelected={setSelected} selected={selected} />
+
       <div>
         <label className="block font-medium mb-1">Din vurdering:</label>
         <div className="flex space-x-1">

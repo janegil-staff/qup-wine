@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import AverageRating from "./avarageRating";
 import Rating from "./rating";
 import Reviews from "./reviews";
+import WineDropdown from "./WindeDropdown";
 
 export default function ProductReviews({ productId }) {
   const [reviews, setReviews] = useState([]);
@@ -34,16 +35,17 @@ export default function ProductReviews({ productId }) {
         <p>No reviews yet.</p>
       ) : (
         reviews.map((review) => (
-          <div key={review._id} className="mb-4">
+          <div key={review._id} className="mb-4 relative">
             <p>
               <strong>Rating:</strong> {review.rating}
             </p>
             <p>{review.comment}</p>
+            <p className="absolute right-0 top-6 text-green-200">{review.type}</p>
           </div>
         ))
       )}
       <AverageRating averageRating={averageRating} reviews={reviews} />
-
+     
       <Rating reviews={reviews} setReviews={setReviews} productId={productId} />
       <Reviews reviews={reviews} productId={productId} />
     </div>

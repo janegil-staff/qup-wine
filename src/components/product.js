@@ -45,7 +45,7 @@ const Product = ({ selectedType, setSelectedType }) => {
 
       <h1 className="text-3xl font-bold mb-2">{product?.name}</h1>
       <p className="text-gray-300 mb-2">
-        {product?.description} inneholder {product?.percentage}% alkohol
+        {product?.description} inneholder fra 12% til 15% alkohol
       </p>
       <p className="text-xl font-semibold text-green-400 mb-6">
         {product?.price} NOK

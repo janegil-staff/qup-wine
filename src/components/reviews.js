@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 
-const Reviews = ({productId}) => {
+const Reviews = ({ productId }) => {
   const [reviews, setReviews] = useState([]);
-const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState([]);
 
- useEffect(() => {
+  useEffect(() => {
     const fetchReviews = async () => {
       try {
         const res = await fetch(`/api/reviews?productId=${productId}`);
@@ -20,8 +20,7 @@ const [product, setProduct] = useState([]);
     }
   }, [productId]);
 
-
- useEffect(() => {
+  useEffect(() => {
     const fetchProduct = async () => {
       try {
         const res = await fetch(`/api/products/${productId}`);
@@ -41,14 +40,17 @@ const [product, setProduct] = useState([]);
   return (
     <div className="mt-8">
       <h2 className="text-2xl font-semibold mb-3">Anmeldelser</h2>
-      {reviews?.length === 0 && <p className="text-gray-400">Ingen Anmeldelser enda.</p>}
+      {reviews?.length === 0 && (
+        <p className="text-gray-400">Ingen Anmeldelser enda.</p>
+      )}
       {reviews?.map((r, i) => (
-        <div key={i} className="border-t border-gray-700 pt-3 mt-3">
+        <div key={i} className="border-t border-gray-700 pt-3 mt-3 relative">
           <div className="text-yellow-400 text-lg">
             {"★".repeat(r.rating)}
             {"☆".repeat(5 - r.rating)}
           </div>
           <p className="text-gray-200">{r.comment}</p>
+          <p className="text-green-200 absolute right-0 top-4">{r.type}</p>
         </div>
       ))}
     </div>
