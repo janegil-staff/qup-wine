@@ -24,7 +24,7 @@ const Rating = ({ productId }) => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <p>Velg vin type</p>
+      <p className=" text-green-200">Velg vin type</p>
       <WineDropdown setSelected={setSelected} selected={selected} />
 
       <div>
