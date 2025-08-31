@@ -40,7 +40,7 @@ export default function ProductReviews({ productId }) {
               <strong>Rating:</strong> {review.rating}
             </p>
             <p>{review.comment}</p>
-            <p className="absolute right-0 top-6 text-green-200">{review.type}</p>
+            <p className="absolute right-0 top-0 text-green-200">{review.type}</p>
           </div>
         ))
       )}
