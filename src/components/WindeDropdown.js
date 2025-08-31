@@ -1,7 +1,7 @@
 // components/WineDropdown.js
 import { useState } from "react";
 
-const wineTypes = ["Rødviner", "Chilensk", "Spansk", "Rose", "Piesporter", "Dessertvin", "Eple", "Fersken", "Kiwi", "Bringebær Plomme"];
+const wineTypes = ["Rødviner", "Chilensk", "Spansk", "Rose", "Piesporter", "Dessertvin", "Eple", "Fersken", "Kiwi", "Bringebær", "Plomme"];
 
 export default function WineDropdown({ onSelect, selected, setSelected }) {
   
